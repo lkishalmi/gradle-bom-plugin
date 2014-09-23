@@ -1,0 +1,8 @@
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'groovy'
+
+group = 'com.github.lkishalmi.gradle'
+version = '0.1.0'
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
