@@ -50,6 +50,9 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
 
         String get(String group, String module) {
             String version = getVersion(group, module);
+            if (version == null) {
+                throw new IllegalDependencyNotation("There is no rule in BOM which could define version for: '$group:$module'")
+            }
             return group + ':' + module + ':' + version;
         }
 
@@ -58,6 +61,12 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
                 moduleSpec = moduleSpec + ':';
             }
             return rules.put(moduleSpec, version);
+        }
+        
+        public void rules(Map<String, String> map) {
+            for ( e in map ) {
+                putAt(e.key, e.value)
+            }
         }
 
         public String getVersion(String group, String module) {
