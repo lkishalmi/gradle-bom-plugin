@@ -42,9 +42,9 @@ apply plugin: 'bill-of-materials'
 apply file: "$rootDir/versions.gradle"
 
 dependencies {
-    compile BOM['org.springframework:spring-core']
-    compile BOM['commons-logging:commons-logging']
-    providedCompile BOM['javax.servlet:servlet-api']
+    compile 'org.springframework:spring-core'
+    compile 'commons-logging:commons-logging'
+    providedCompile group: 'javax.servlet', name: 'servlet-api'
 }
 ```
 `versions.gradle`:
