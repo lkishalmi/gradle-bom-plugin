@@ -53,6 +53,14 @@ BOM['org.springframework'] = '3.0.5.RELEASE'
 BOM[':commons-logging'] = '1.1.1'
 BOM['javax.servlet:servlet-api'] = '2.5'
 ```
+or
+```
+BOM.rules([
+    'org.springframework' : '3.0.5.RELEASE',
+    ':commons-logging' : '1.1.1',
+    'javax.servlet:servlet-api' : '2.5'
+])
+```
 
 Usage in Multi-Project Builds
 -----------------------------
