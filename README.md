@@ -2,10 +2,12 @@ gradle-bom-plugin
 =================
 
 Bill of Materials Plugin for Gradle to Manage Versions of 3rd Party Libraries
-in a Central Space
+in a Central place.
+
+There is a similar plugin [dependency-management-plugin from Spring][1]
 
 The idea of this plugin has came from experience converting large multi-module
-Maven projects to gradle.
+Maven projects to Gradle.
 
 1. While `gradle init` does it's job to convert dependencies, there were 
    differences in the final 3rd party library usage due to the master pom's
@@ -24,7 +26,7 @@ Querying is done in the following priority order:
 2. query for `:<module>`
 3. query for `<group>:`
 
-Besides storing versions, this plugin extends dependency resolver to force 3rd party library versions listed in BOM in transitive dependencies. This behaviour simulates the version locking functionality of the `<dependencyManagement>` section of Maven `pom.xml`-s.
+Besides storing versions, this plugin extends dependency resolver to force 3rd party library versions listed in BOM in transitive dependencies. This behavior simulates the version locking functionality of the `<dependencyManagement>` section of Maven `pom.xml`-s.
 
 Usage
 -----
@@ -38,7 +40,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'bill-of-materials'
+apply plugin: 'com.github.lkishalmi.bill-of-materials'
 apply file: "$rootDir/versions.gradle"
 
 dependencies {
@@ -81,3 +83,5 @@ subprojects {
    ...
 }
 ```
+
+[1]: https://github.com/spring-gradle-plugins/dependency-management-plugin

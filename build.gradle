@@ -1,8 +1,50 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.5'
+    }
+}
 apply plugin: 'java-gradle-plugin'
 apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
 
 group = 'com.github.lkishalmi.gradle'
 version = '0.1.0'
 
 sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
+
+/*
+bintray {
+    user = 'bintray_user'
+    key = 'bintray_api_key'
+
+    configurations = ['artifacts'] //When uploading configuration files
+    dryRun = false //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+        repo = 'myrepo'
+        userOrg = 'myorg' //An optional organization name when the repo belongs to one of the user's orgs
+        name = 'mypkg'
+        desc = 'what a fantastic package indeed!'
+        websiteUrl = 'https://github.com/lkishalmi/gradle-bom-plugin'
+        issueTrackerUrl = 'https://github.com/lkishalmi/gradle-bom-plugin/issues'
+        vcsUrl = 'https://github.com/lkishalmi/gradle-bom-plugin.git'
+        licenses = ['Apache-2.0']
+        labels = ['gear', 'gore', 'gorilla']
+        publicDownloadNumbers = true
+        attributes= ['a': ['ay1', 'ay2'], 'b': ['bee'], c: 'cee'] //Optional package-level attributes
+        //Optional version descriptor
+        version {
+            name = "$version" //Bintray logical version name
+            desc = 'optional, version-specific description'
+            released  = 'optional, date of the version release' //2 possible values: date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ' OR a java.util.Date instance
+            vcsTag = "$version"
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin'] //Optional version-level attributes
+        }
+    }
+}
+*/
