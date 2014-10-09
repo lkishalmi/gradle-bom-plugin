@@ -1,5 +1,6 @@
 package com.github.lkishalmi.gradle.bom
 
+import org.gradle.api.IllegalDependencyNotation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.DependencyResolveDetails
