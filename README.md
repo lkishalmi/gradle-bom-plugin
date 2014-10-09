@@ -2,7 +2,7 @@ gradle-bom-plugin
 =================
 
 Bill of Materials Plugin for Gradle to Manage Versions of 3rd Party Libraries
-in a Central place.
+in a central place.
 
 There is a similar plugin [dependency-management-plugin from Spring][1]
 
@@ -18,7 +18,7 @@ Maven projects to Gradle.
 
 How Does it Work
 ----------------
-This plugin adds a BOM extension to the project DSL. This BOM is just a little bit more than a hashmap which is used to store version numbers. It uses keys (rules) like: `[<group>][:][<module>]` where either thr group or module is optional.
+This plugin adds a BOM extension to the project DSL. This BOM is just a little bit more than a hashmap which is used to store version numbers. It uses keys (rules) like: `[<group>][:][<module>]` where either the group or module is optional.
 Querying this BOM with `<group>:<module>` would result a full dependency spec. string as: `<group>:<module>:<version>` (or empty string at the moment if the requested module version is not in the BOM)
 Querying is done in the following priority order:
 
