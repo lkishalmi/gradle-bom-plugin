@@ -54,7 +54,7 @@ bintray {
         version {
             name = "$version" 
             vcsTag = "$version"
-            attributes = ['gradle-plugin': 'com.github.lkishalmi.bill-of-materials:com.github.lkishalmi.gradle:bill-of-materials'] 
+            attributes = ['gradle-plugin': 'com.github.lkishalmi.bill-of-materials:com.github.lkishalmi.gradle:gradle-bom-plugin'] 
         }
     }
 }
