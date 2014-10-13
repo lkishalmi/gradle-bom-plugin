@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.1.0'
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2'
     }
 }
 
@@ -72,8 +72,11 @@ Usage in Multi-Project Builds
 `build.gradle`:
 ```
 buildscript {
+    repositories {
+        jcenter()
+    }
     dependencies {
-        classpath files('<path to the gradle-bom-plugin-0.1.0.jar>')
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2'
     }
 }
 

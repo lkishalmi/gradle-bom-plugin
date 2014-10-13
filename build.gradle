@@ -12,7 +12,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.github.lkishalmi.gradle'
-version = '0.1.0'
+version = '0.2'
 
 sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
