@@ -12,7 +12,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.github.lkishalmi.gradle'
-version = '0.2'
+version = '0.2.1'
 
 sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
@@ -50,7 +50,6 @@ bintray {
         licenses = ['Apache-2.0']
         labels = ['gradle-plugin', 'version', 'dependencyManagement', 'dependency', 'force version', 'bom']
         publicDownloadNumbers = true
-        attributes= ['gradle-plugin': ['bill-of-materials']]
         version {
             name = "$version" 
             vcsTag = "$version"

@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2'
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2.1'
     }
 }
 
@@ -76,7 +76,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2'
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2.1'
     }
 }
 
