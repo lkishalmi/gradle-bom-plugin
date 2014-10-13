@@ -51,8 +51,8 @@ bintray {
         labels = ['gradle-plugin', 'version', 'dependencyManagement', 'dependency', 'force version', 'bom']
         publicDownloadNumbers = true
         version {
-            name = "$version" 
-            vcsTag = "$version"
+            name = "${project.version}" 
+            vcsTag = "${project.version}"
             attributes = ['gradle-plugin': 'com.github.lkishalmi.bill-of-materials:com.github.lkishalmi.gradle:gradle-bom-plugin'] 
         }
     }
