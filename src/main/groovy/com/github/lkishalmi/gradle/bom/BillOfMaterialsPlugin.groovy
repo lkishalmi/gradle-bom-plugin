@@ -1,5 +1,6 @@
 package com.github.lkishalmi.gradle.bom
 
+import org.gradle.api.GradleException
 import org.gradle.api.IllegalDependencyNotation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,14 +14,27 @@ import org.gradle.api.logging.Logger
 class BillOfMaterialsPlugin  implements Plugin<Project> {
 
     public void apply(Project project) {
+        if (!project.getRootProject().equals(project)) {
+            throw new GradleException("Please apply this plugin on the root project only!");
+        }
         VersionStore store = project.getExtensions().create("BOM", VersionStore.class, project.logger);
         
-        project.configurations.all {
-            resolutionStrategy.eachDependency {
-                DependencyResolveDetails details ->
-                def version = store.getVersion(details.requested.group, details.requested.name)
-                if (version != null) {
-                    details.useVersion(version)
+        project.allprojects {            
+           configurations.all { configuration ->
+                resolutionStrategy.eachDependency {
+                    DependencyResolveDetails details ->
+                    def version = BOM.getVersion(details.requested.group, details.requested.name)
+                    if (version != null) {
+                        details.useVersion(version)
+                    }
+                }
+            }
+        }
+        
+        project.tasks.create('checkUnusedBOMRules') << {
+            if (!project.BOM.unusedRules.empty) {
+                project.BOM.unusedRules.each { rule ->
+                    println "Unused Rule in BOM: $rule"
                 }
             }
         }
@@ -35,6 +49,7 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
         }
         
         Map<String, String> rules = new HashMap<>();
+        Set<String> unusedRules = new HashSet<>();
 
         String getAt(String moduleSpec) {
             String version = rules.get(moduleSpec);
@@ -61,6 +76,7 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
             if (moduleSpec.indexOf(':') < 0) {
                 moduleSpec = moduleSpec + ':';
             }
+            unusedRules.add(moduleSpec);
             return rules.put(moduleSpec, version);
         }
         
@@ -71,11 +87,17 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
         }
 
         public String getVersion(String group, String module) {
-            String version = rules.get(group + ':' + module);
+            String rule = group + ':' + module;
+            String version = rules.get(rule);
             if (version == null) {
-                version = rules.get(':' + module);
-                String gversion = rules.get(group + ':');
+                rule = ':' + module;
+                version = rules.get(rule);
+                String grule = group + ':'
+                String gversion = rules.get(grule);
                 if (version == null) {
+                    if (gversion != null) {
+                        rule = grule;
+                    }
                     version = gversion;
                 } else {
                     if ((gversion != null) && !version.equals(gversion)) {
@@ -84,7 +106,14 @@ class BillOfMaterialsPlugin  implements Plugin<Project> {
                     }
                 }
             }
+            if (version != null) {
+                unusedRules.remove(rule);
+            }
             return version;
+        }
+        
+        public Set<String> getUnusedRules() {
+            return Collections.unmodifiableSet(unusedRules);
         }
     }
 }
