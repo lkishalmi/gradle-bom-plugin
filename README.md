@@ -28,6 +28,15 @@ Querying is done in the following priority order:
 
 Besides storing versions, this plugin extends dependency resolver to force 3rd party library versions listed in BOM in transitive dependencies. This behavior simulates the version locking functionality of the `<dependencyManagement>` section of Maven `pom.xml`-s.
 
+Changes in Version 0.3
+----------------------
+
+* This plugin shall and can be applied on the root project only.
+* Build fails if there is an artifact reference without version
+  and no rule exists in the BOM matches the artifact.
+* Added checkUnusedBOMRules task to list the unused rules 
+  during the current build run.
+
 Usage
 -----
 `build.gradle`:
@@ -37,14 +46,14 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2.1'
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.3'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'com.github.lkishalmi.bill-of-materials'
-apply file: "$rootDir/versions.gradle"
+apply from: "$rootDir/versions.gradle"
 
 dependencies {
     compile 'org.springframework:spring-core'
@@ -76,15 +85,15 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.2.1'
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.3'
     }
 }
+apply plugin: 'com.github.lkishalmi.bill-of-materials'
+apply from: "$rootDir/versions.gradle"
 
 subprojects {
    ...
    apply plugin: 'java'
-   apply plugin: 'bill-of-materials'
-   apply file: "$rootDir/versions.gradle"
    
    ...
 }
