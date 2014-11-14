@@ -12,10 +12,9 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.github.lkishalmi.gradle'
-version = '0.3-SNAPSHOT'
+version = '0.3'
 
 sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
